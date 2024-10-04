@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BarService {
@@ -21,8 +22,8 @@ public class BarService {
         return barRepository.findAll();
     }
 
-    public Bar findById(Long id) {
-        return barRepository.findById(id).orElse(null);
+    public Optional<Bar>  findById(Long id) {
+        return  barRepository.findById(id);
     }
 
     public Bar save(Bar bar) {
@@ -39,7 +40,7 @@ public class BarService {
     }
 
     public void deleteById(Long id) {
-        barRepository.delete(findById(id));
+        barRepository.delete(findById(id).get());
 
     }
 
