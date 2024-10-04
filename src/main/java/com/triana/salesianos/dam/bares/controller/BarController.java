@@ -44,5 +44,4 @@ public class BarController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
 }
