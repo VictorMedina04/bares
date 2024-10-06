@@ -19,7 +19,16 @@ public class BarController {
     @GetMapping("/")
     public ResponseEntity<List<Bar>> index() {
 
-        return new ResponseEntity<>(barService.findAll(), HttpStatus.OK);
+        List<Bar>listaBares = barService.findAll();
+
+
+        if (listaBares.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaBares, HttpStatus.OK);
+
+        //return listaBares != null ? new ResponseEntity<>(listaBares, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.CREATED);
+        //return new ResponseEntity<>(barService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
