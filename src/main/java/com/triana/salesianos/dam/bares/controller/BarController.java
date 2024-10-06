@@ -2,6 +2,7 @@ package com.triana.salesianos.dam.bares.controller;
 
 import com.triana.salesianos.dam.bares.BaresApplication;
 import com.triana.salesianos.dam.bares.models.Bar;
+import com.triana.salesianos.dam.bares.models.Tag;
 import com.triana.salesianos.dam.bares.service.BarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,24 +23,12 @@ public class BarController {
     @GetMapping("/")
     public ResponseEntity<List<Bar>> index() {
 
-<<<<<<< HEAD
-        List<Bar>listaBares = barService.findAll();
-
-
-        if (listaBares.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(listaBares, HttpStatus.OK);
-
-        //return listaBares != null ? new ResponseEntity<>(listaBares, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.CREATED);
-        //return new ResponseEntity<>(barService.findAll(), HttpStatus.OK);
-=======
         if (barService.findAll().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(barService.findAll(), HttpStatus.OK);
->>>>>>> c65935d1346eaa21e7acce37f6e920a079347a6b
+
     }
 
     @GetMapping("/{id}")
@@ -79,10 +68,20 @@ public class BarController {
     }
 
     @PutMapping("/{id}/tag/add/{nuevo_tag}")
-    public ResponseEntity<Void> addTag(@PathVariable Long id, @PathVariable String nuevo_tag) {
+    public ResponseEntity<Bar> addTag(@PathVariable Long id, @PathVariable Tag nuevo_tag) {
 
         Optional<Bar> bar = barService.findById(id);
 
+        if (bar.isPresent()){
+            bar.get().getListaTags().add(new Tag(nuevo_tag));
+            return new ResponseEntity<>(HttpStatus.OK);
 
+        }
+
+        return new ResponseEntity<>(bar.get() ,HttpStatus.NOT_FOUND);
     }
+
+
+
+
 }
