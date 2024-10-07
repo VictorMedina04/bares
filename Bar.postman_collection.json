@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "2a1758fc-eba9-4ddb-8e9f-5e4fac4ef77d",
+		"name": "Bar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38617657"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/place/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"nombre\": \"Encarni\",\r\n    \"direccion\": \"Calle Evangelista 69-71\",\r\n    \"descripcion\": \"Tienda pa los bocatas.\",\r\n    \"urlImagen\": \"http://example.com/encarni.jpg\",\r\n    \"latitud\": 20.416775,\r\n    \"longitud\": -3.70379,\r\n    \"listaTags\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Chicharrones\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/place/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/4",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"nombre\": \"Encarni\",\r\n    \"direccion\": \"Calle Evangelista 34-56\",\r\n    \"descripcion\": \"Tienda pa los bocatas.\",\r\n    \"urlImagen\": \"http://example.com/encarni.jpg\",\r\n    \"latitud\": 23.416775,\r\n    \"longitud\": -5.70379,\r\n    \"listaTags\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Chicharrones\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/place/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/4",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/2/tag/add/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/place/2/tag/add/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"2",
+						"tag",
+						"add",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/3/tag/del/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/3/tag/del/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"3",
+						"tag",
+						"del",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

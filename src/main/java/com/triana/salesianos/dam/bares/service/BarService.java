@@ -1,6 +1,7 @@
 package com.triana.salesianos.dam.bares.service;
 
 import com.triana.salesianos.dam.bares.models.Bar;
+import com.triana.salesianos.dam.bares.models.Tag;
 import com.triana.salesianos.dam.bares.repository.BarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class BarService {
         return barRepository.findAll();
     }
 
-    public Optional<Bar>  findById(Long id) {
-        return  barRepository.findById(id);
+    public Optional<Bar> findById(Long id) {
+        return barRepository.findById(id);
     }
 
     public Bar save(Bar bar) {
@@ -43,6 +44,17 @@ public class BarService {
         barRepository.delete(findById(id).get());
 
     }
+
+    public Bar addTag(Bar bar, Tag tag) {
+
+        if (bar.getListaTags().contains(tag)) {
+            return barRepository.save(bar);
+        }
+
+        bar.getListaTags().add(tag);
+        return barRepository.save(bar);
+    }
+
 
 
 }

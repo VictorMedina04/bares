@@ -4,6 +4,7 @@ import com.triana.salesianos.dam.bares.BaresApplication;
 import com.triana.salesianos.dam.bares.models.Bar;
 import com.triana.salesianos.dam.bares.models.Tag;
 import com.triana.salesianos.dam.bares.service.BarService;
+import com.triana.salesianos.dam.bares.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,8 @@ import java.util.Optional;
 public class BarController {
 
     private final BarService barService;
-    private final BaresApplication baresApplication;
+
+    private final TagService tagService;
 
     @GetMapping("/")
     public ResponseEntity<List<Bar>> index() {
@@ -67,21 +69,35 @@ public class BarController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}/tag/add/{nuevo_tag}")
-    public ResponseEntity<Bar> addTag(@PathVariable Long id, @PathVariable Tag nuevo_tag) {
+    @PutMapping("/{id}/tag/add/{idTag}")
+    public ResponseEntity<Bar> addTag(@PathVariable Long id, @PathVariable Long idTag) {
 
         Optional<Bar> bar = barService.findById(id);
+        Tag nuevoTag = tagService.getTagById(idTag);
 
-        if (bar.isPresent()){
-            bar.get().getListaTags().add(new Tag(nuevo_tag));
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (nuevoTag == null && !bar.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         }
 
-        return new ResponseEntity<>(bar.get() ,HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(barService.addTag(bar.get(), nuevoTag));
     }
 
+    @PutMapping("/{id}/tag/del/{idTag}")
+    public ResponseEntity<Bar> eliminarTag(@PathVariable Long id, @PathVariable Long idTag) {
 
+        Optional<Bar> bar = barService.findById(id);
+
+        Tag tagEncontrada = tagService.getTagById(idTag);
+        
+
+        bar.get().getListaTags().remove(tagEncontrada);
+        barService.save(bar.get());
+
+
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 }
